@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Sentiment module file.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function sentiment_theme($existing, $type, $theme, $path) {
+  return [
+      'analyzer' => [
+        'template' => 'analyzer',
+        'variables' => [
+          'variables' => [],
+          'title' => NULL,
+        ],
+      ],
+  ];
+}

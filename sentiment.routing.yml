@@ -1,0 +1,17 @@
+sentiment.admin.form:
+  path: '/admin/sentiment/config'
+  defaults:
+    _form: '\Drupal\sentiment\Form\Analyzer'
+    _title: 'My Menu Plan settings'
+  requirements:
+    _permission: 'access content'
+
+sentiment.content:
+  path: '/comments'
+  defaults:
+    _controller: '\Drupal\sentiment\Controller\AnalyzerController::analyzer'
+    _title: 'Meal planner'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: 'TRUE'

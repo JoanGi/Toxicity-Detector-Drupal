@@ -1,0 +1,195 @@
+mealplan:
+  version: 1.x
+  css:
+    theme:
+      assets/css/mealplan.css: {}
+  js:
+    assets/js/mealplan.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.ui.tabs
+
+recipeadd:
+  version: 1.x
+  css:
+    theme:
+      assets/css/recipeadd.css: {}
+  js:
+    assets/js/recipeadd.js: {}
+    assets/js/litepicker/litepicker.js: {}
+    assets/js/litepicker/multiselect.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - ln_srh_mealplanner/mp-button
+    - ln_srh_mealplanner/mp-dialog
+
+change_meal:
+  version: 1.x
+  css:
+    theme:
+      assets/css/change_meal.css: {}
+      https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css: {type: external, minified: true}
+  js:
+    assets/js/change_meal.js: {}
+    https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js: {type: external, minified: true}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+datepicker:
+  version: 1.x
+  js:
+    assets/js/datepicker.js: {}
+    assets/js/litepicker/litepicker.js: {}
+    assets/js/litepicker/multiselect.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.ui.datepicker
+
+menu_preferences_exclusions:
+  js:
+    assets/js/exclusions.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal.dialog.ajax
+    - core/jquery.ui.autocomplete
+    - core/drupalSettings
+
+basic-styles:
+  version: 1.x
+  css:
+    theme:
+      assets/css/basic-styles.css: {}
+  dependencies:
+    - ln_srh_mealplanner/mp-topbar
+
+mp-topbar:
+  version: 1.x
+  css:
+    theme:
+      assets/css/components/mp-topbar.css: {}
+
+mp-week-calendar:
+  version: 1.x
+  css:
+    theme:
+      assets/css/components/mp-week-calendar.css: {}
+  dependencies:
+    - ln_srh_mealplanner/basic-styles
+
+mp-settings:
+  version: 1.x
+  css:
+    theme:
+      assets/css/components/mp-settings.css: {}
+  dependencies:
+    - ln_srh_mealplanner/basic-styles
+
+menu-preferences:
+  css:
+    theme:
+      assets/css/components/mp-button.css: {}
+      assets/css/menu-preferences.css: {}
+
+  js:
+    assets/js/menu-preferences.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal.dialog.ajax
+    - core/jquery.ui.autocomplete
+    - core/drupalSettings
+    - ln_srh_mealplanner/mp-onboarding
+
+shopping-list-selector:
+  css:
+    theme:
+      assets/css/shopping-list.css: {}
+  js:
+    http://cdn.adimo.co/scripts/mealPlanner.js: { type: external }
+    assets/js/shopping-list.js: {}
+    assets/js/litepicker/litepicker.js: {}
+    assets/js/litepicker/multiselect.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/jquery.once
+    - core/drupal.dialog.ajax
+    - core/drupalSettings
+    - ln_srh_mealplanner/mp-button
+    - ln_srh_mealplanner/mp-onboarding
+
+shopping-list-summary:
+  css:
+    theme:
+      assets/css/shopping-list.css: {}
+  js:
+    https://cdn.adimo.co/scripts/mealPlanner.js: { type: external }
+    assets/js/shopping-list-summary.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/jquery.once
+    - core/drupal.dialog.ajax
+    - core/jquery.ui.autocomplete
+    - core/drupalSettings
+    - ln_srh_mealplanner/mp-button
+    - ln_srh_mealplanner/mp-onboarding
+
+
+mp-button:
+  version: 1.x
+  css:
+    theme:
+      assets/css/components/mp-button.css: {}
+  dependencies:
+    - ln_srh_mealplanner/basic-styles
+
+mp-svg-icon:
+  version: 1.x
+  css:
+    theme:
+      assets/css/components/mp-svg-icon.css: {}
+
+mp-onboarding:
+  version: 1.x
+  css:
+    theme:
+      assets/css/components/mp-onboarding.css: {}
+  dependencies:
+    - ln_srh_mealplanner/mp-button
+    - ln_srh_mealplanner/mp-svg-icon
+    - ln_srh_mealplanner/mp-dialog
+
+stepbar:
+  css:
+    theme:
+      assets/css/stepbar.css: {}
+  js:
+    assets/js/steps.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal.dialog.ajax
+    - core/jquery.ui.autocomplete
+    - core/drupalSettings
+    - ln_srh_mealplanner/mp-onboarding
+
+mp-dialog:
+  version: 1.x
+  css:
+    theme:
+      assets/css/components/mp-dialog.css: {}
+  dependencies:
+    - ln_srh_mealplanner/basic-styles

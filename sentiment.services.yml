@@ -1,0 +1,11 @@
+services:
+  sentiment.detoxify:
+    class: Drupal\sentiment\Controller\DetoxifyConnector
+    arguments :
+        - '@config.factory'
+        - '@serialization.json'
+  sentiment.perspective:
+    class: Drupal\sentiment\Controller\PerspectiveConnector
+    arguments :
+        - '@config.factory'
+        - '@serialization.json'
