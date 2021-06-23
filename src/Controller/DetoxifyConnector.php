@@ -62,7 +62,7 @@ class DetoxifyConnector extends ControllerBase {
    * @return array
    *   Mealplan render array.
    */
-  public function analyzer() {
+  public function analyzer($string) {
 
     $baseUrl = 'localhost:8000';
     $client = new Client([
@@ -76,7 +76,7 @@ class DetoxifyConnector extends ControllerBase {
       $response = $client->request('POST', $url, [
         'body' => JSON::encode(
           [
-            'input' => 'Texto bueno',
+            'input' => $string,
           ])
       ]);
       $answer = JSON::decode($response->getBody()->getContents());

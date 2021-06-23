@@ -5,6 +5,9 @@
  * Sentiment module file.
  */
 
+ use Sentiment\Analyzer;
+ use \Drupal\node\Entity\Node;
+
 /**
  * Implements hook_theme().
  */
@@ -18,4 +21,54 @@ function sentiment_theme($existing, $type, $theme, $path) {
         ],
       ],
   ];
+}
+function sentiment_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+
+ // Interaction Notificaction. Interaction for Comment.
+   \Drupal::logger('Sentiment')->notice('creating content');
+    if ($entity instanceof Drupal\comment\CommentInterface) {
+
+      // Calling Toxicity services
+      $detoxifyService = \Drupal::service('sentiment.detoxify');
+      $PerspectiveService = \Drupal::service('sentiment.perspective');
+      $analyzerPHP = new Analyzer();
+
+      // Preparing text
+      $commentBody = str_replace("&nbsp;", '', strip_tags($entity->get('comment_body')->getValue()[0]['value']));
+      $commentText = $entity->getSubject() . ': ' . $commentBody;
+
+      // Analyzing text
+      // PHP sentiment Analyzer
+      $resPHP = $analyzerPHP->getSentiment($commentText);
+      // Detoxify
+      $resDetox = $detoxifyService->analyzer($commentText);
+      // Google perspective API
+      $resPerspective = $PerspectiveService->analyzer($commentText);
+
+      kint ($entity->get('cid')->getValue());
+
+      // save data
+      $node = Node::create([
+        'type'        => 'toxicity_evaluation',
+        'title'       => $entity->getSubject(),
+        'field_detoxify_result' => $resDetox['TOXICITY'],
+        'field_vader_result' => (1 + $resPHP['compound'])/2,
+        'field_perspective_result' => $resPerspective['attributeScores']['TOXICITY']['summaryScore']['value'],
+        'field_comment_reference' => $entity->id()
+      ]);
+      $node->save();
+
+      //shown
+      kint($commentText);
+      kint($resPHP['compound']);
+      kint($resDetox['TOXICITY']);
+      kint($resPerspective['attributeScores']['TOXICITY']['summaryScore']['value']);
+      exit();
+
+      $sentence = "I just got a call from David - does he realize it's Sunday?";
+    // PHP sentiment Analyzer
+    $resPHP = $analyzerPHP->getSentiment($sentence);
+      \Drupal::logger('Sentiment')->notice('creating comment');
+    }
+
 }

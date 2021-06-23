@@ -62,7 +62,7 @@ class PerspectiveConnector extends ControllerBase {
    * @return array
    *   Mealplan render array.
    */
-  public function analyzer() {
+  public function analyzer($string) {
 
     // Google perspective API
     $baseUrl = 'https://commentanalyzer.googleapis.com/v1alpha1/comments:analyze?key=AIzaSyDaUOPlrAcCgSP0ZkSpdFZ408pVcoKPP1E';
@@ -78,7 +78,7 @@ class PerspectiveConnector extends ControllerBase {
         'body' =>
           '{
             "comment": {
-              "text": "Thats my super text, please analyze"
+              "text": "' . $string . '",
             },
             "requestedAttributes": {
               "TOXICITY":{}
