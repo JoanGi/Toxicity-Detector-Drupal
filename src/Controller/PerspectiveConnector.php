@@ -78,7 +78,7 @@ class PerspectiveConnector extends ControllerBase {
         'body' =>
           '{
             "comment": {
-              "text": "' . $string . '",
+              "text": " '. $string .' ",
             },
             "requestedAttributes": {
               "TOXICITY":{}

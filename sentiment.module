@@ -24,8 +24,6 @@ function sentiment_theme($existing, $type, $theme, $path) {
 }
 function sentiment_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
 
- // Interaction Notificaction. Interaction for Comment.
-   \Drupal::logger('Sentiment')->notice('creating content');
     if ($entity instanceof Drupal\comment\CommentInterface) {
 
       // Calling Toxicity services
@@ -45,8 +43,6 @@ function sentiment_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
       // Google perspective API
       $resPerspective = $PerspectiveService->analyzer($commentText);
 
-      kint ($entity->get('cid')->getValue());
-
       // save data
       $node = Node::create([
         'type'        => 'toxicity_evaluation',
@@ -58,17 +54,9 @@ function sentiment_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
       ]);
       $node->save();
 
-      //shown
-      kint($commentText);
-      kint($resPHP['compound']);
-      kint($resDetox['TOXICITY']);
-      kint($resPerspective['attributeScores']['TOXICITY']['summaryScore']['value']);
-      exit();
-
-      $sentence = "I just got a call from David - does he realize it's Sunday?";
-    // PHP sentiment Analyzer
-    $resPHP = $analyzerPHP->getSentiment($sentence);
-      \Drupal::logger('Sentiment')->notice('creating comment');
+      \Drupal::logger('Sentiment')->notice('<pre><code>' . print_r($resDetox, TRUE) . '</code></pre>');
+      \Drupal::logger('Sentiment')->notice('<pre><code>' . print_r($resPerspective, TRUE) . '</code></pre>');
+      \Drupal::logger('Sentiment')->notice('<pre><code>' . print_r($resPHP, TRUE) . '</code></pre>');
     }
 
 }
